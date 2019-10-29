@@ -28,6 +28,37 @@
             EX9) Write a selector to target the "back to top" link
             EX10) Write a selector to target the footer
         */ 
+        h1{
+            color: saddlebrown;
+        }
+        .nav > * {
+            background: powderblue;
+        }
+
+        .jumbotron div p:last-child {
+            background: pink;
+        }
+
+        div div .blog-post:nth-child(2){
+            background:skyblue;
+        }
+        .nav a:nth-child(2n){
+            text-decoration: overline;
+        }
+        
+        div div .blog-post:nth-last-child(2){
+            background :rgb(235, 135, 230);
+        }
+
+        .blog-sidebar div ol li {
+            background: green;
+        }
+
+        footer p:nth-child(2) a {
+            color:slateblue;
+        }
+
+
     </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -114,8 +145,7 @@
 
         <div class="row mb-2">
             <div class="col-md-6">
-                <div
-                    class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                     <div class="col p-4 d-flex flex-column position-static">
                         <strong class="d-inline-block mb-2 text-primary">World</strong>
                         <h3 class="mb-0">Featured post</h3>
@@ -296,14 +326,76 @@
     </main><!-- /.container -->
 
     <footer class="blog-footer">
-        <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a
-                href="https://twitter.com/mdo">@mdo</a>.</p>
+        <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
         <p>
             <a href="#">Back to top</a>
         </p>
     </footer>
 
     <script>
+
+        function $(selector){
+            return document.querySelector(selector)
+        }
+
+        function _$(selector){
+            return document.querySelectorAll(selector)
+        }
+
+        function c$(selector){
+            return document.createElement(selector)
+        }
+
+        function addNewLink(text){
+            var newLi = c$("a")
+            var nav = $(".nav")
+            newLi.innerText = text
+            newLi.className = "p-2 text-muted"
+            nav.appendChild(newLi)
+        }
+
+        function removeSearch(){
+            var div = _$(".blog-header div div")
+            var a = _$(".blog-header div div a")
+            div[div.length-1].removeChild(a[a.length-2])
+        }
+
+        function changeJumbotron(color){
+            var jumbotron = $(".jumbotron")
+            jumbotron.style.cssText = "background-color: " + color + " !important"
+        }
+
+        function changeMainTitle(color){
+            var h1 = $("h1")
+            h1.style.cssText = "color: " + color + " !important"
+        }
+
+        function changeColumnSize(){
+            var h2 = _$("h2")
+            var h3 = _$("h3")
+            for(var i = 0; i < h2.length; i++){
+                h2[i].style.columnWidth = "50px"
+            }
+            for(var i = 0; i < h3.length; i++){
+                h3[i].style.columnWidth = "50px"
+            } 
+        }
+
+        function removeElsewhereLinks(){
+            var li = _$("li")
+            var ol = _$("aside div ol")
+            ol[1].parentNode.removeChild(ol[1])
+        }
+
+        function addNewPost(title){
+            var heading = c$("h2")
+            var div = c$("div")
+            var nav = $(".blog-main nav")
+            heading.innerText = title
+            var mainBlog = $(".blog-main")
+            div.appendChild(heading)
+            mainBlog.insertBefore(div, nav)
+        }
     
     /*
         JS Exercises
