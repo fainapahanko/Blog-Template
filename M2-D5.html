@@ -406,11 +406,12 @@
         
         var authors = _$(".blog-post .blog-post-meta a")
 
-        for(var i = 0; i < authors.length; i++){
-            authors[i].hover = function(){
-                var authorsNames = authors.innerText
-                alert(authorsNames)
+        function onHover(evenr){
+            alert(event.target.textContent)
         }
+
+        for(var i = 0; i < authors.length; i++){
+            authors[i].onmouseover = onHover
         }
     /*
         JS Exercises
