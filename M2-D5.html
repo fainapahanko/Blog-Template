@@ -398,6 +398,26 @@
             mainBlog.insertBefore(div, nav)
         }
 
+        function $(selector, context) {
+            return (context || document).querySelectorAll(selector);
+        }
+
+        // V1
+        function trimCharacters() {
+            let blogPost = $(".blog-post");
+            blogPost.forEach(d => {
+                d.textContent = d.textContent.substring(0, 150);
+            });
+        }
+
+        //V2
+        function trimAgain() {
+            for (let post of $("div.blog-post")) {
+                let content = post.textContent.substring(0, 150);
+                post.innerHTML = content;
+            }
+        }
+
         function removeLastPost(){
             var div = _$(".blog-post")
             var mainBlog = $(".blog-main")
